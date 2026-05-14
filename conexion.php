@@ -8,7 +8,7 @@ $password = getenv("PGPASSWORD");
 
 $conn_string = "
     host=$host
-    port="47286"
+    port=$port
     dbname=$dbname
     user=$user
     password=$password
