@@ -1,5 +1,7 @@
 <?php
 
+include('init.php');
+
 include('conexion.php');
 
 $mensaje = '';
