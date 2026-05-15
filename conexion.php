@@ -6,25 +6,19 @@ $dbname = getenv("PGDATABASE");
 $user = getenv("PGUSER");
 $password = getenv("PGPASSWORD");
 
-echo "<pre>";
+$conn_string =
+    "host=$host " .
+    "port=$port " .
+    "dbname=$dbname " .
+    "user=$user " .
+    "password=$password";
 
-echo "HOST: ";
-var_dump($host);
+$conn = pg_connect($conn_string);
 
-echo "PORT: ";
-var_dump($port);
+if (!$conn) {
 
-echo "DATABASE: ";
-var_dump($dbname);
+    die("Error de conexión: " . pg_last_error());
 
-echo "USER: ";
-var_dump($user);
-
-echo "PASSWORD: ";
-var_dump($password);
-
-echo "</pre>";
-
-die();
+}
 
 ?>
