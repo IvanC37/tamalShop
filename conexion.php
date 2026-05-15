@@ -1,23 +1,30 @@
 <?php
 
-$host = getenv("PGHOST");
-$port = getenv("PGPORT");
-$dbname = getenv("PGDATABASE");
-$user = getenv("PGUSER");
-$password = getenv("PGPASSWORD");
+$host = getenv('PGHOST');
+$port = getenv('PGPORT');
+$dbname = getenv('PGDATABASE');
+$user = getenv('PGUSER');
+$password = getenv('PGPASSWORD');
 
-$conn_string =
-    "host=$host " .
-    "port=$port " .
-    "dbname=$dbname " .
-    "user=$user " .
-    "password=$password";
+if (
+    empty($host) ||
+    empty($port) ||
+    empty($dbname) ||
+    empty($user) ||
+    empty($password)
+) {
 
-$conn = pg_connect($conn_string);
+    die('Las variables PostgreSQL no están configuradas.');
+
+}
+
+$conn = pg_connect(
+    "host=$host port=$port dbname=$dbname user=$user password=$password"
+);
 
 if (!$conn) {
 
-    die("Error de conexión: " . pg_last_error());
+    die('No se pudo conectar a PostgreSQL.');
 
 }
 
